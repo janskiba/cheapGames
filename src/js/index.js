@@ -1,3 +1,3 @@
-import toggleMenu from './menu/menu.js';
+import toggleMenu from './navbar/navbar.js';
 
 toggleMenu();
