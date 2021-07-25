@@ -248,6 +248,10 @@ body {
   background-color: #ffffff;
 }
 
+.deals .list-container button:active {
+  background-color: #ffffff;
+}
+
 .about {
   margin: 35px 5.5%;
   color: #29246a;
