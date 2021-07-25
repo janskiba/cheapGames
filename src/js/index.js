@@ -1,6 +1,3 @@
-import { scroll } from './animations.js';
+import { scroll, elements } from './animations.js';
 
-const exploreButton = document.querySelector('.elipse-inner button');
-const dealsSection = document.querySelector('.deals');
-
-scroll(exploreButton, dealsSection);
+scroll(elements.exploreButton, elements.dealsSection);
