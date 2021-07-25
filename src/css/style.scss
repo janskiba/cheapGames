@@ -226,7 +226,7 @@ body {
 }
 
 .deals {
-  margin: 35px 0;
+  padding: 10px 0;
   .deals__title {
     margin: 10px 5.5%;
     font-size: 28px;
@@ -242,7 +242,7 @@ body {
     margin: 70px 0 50px;
 
     .deals__logo {
-      height: 65px;
+      height: 55px;
       width: auto;
       opacity: 0.6;
       transition: all 0.2s ease-in-out;
@@ -308,6 +308,9 @@ body {
       transition: all 0.2s;
 
       &:hover {
+        background-color: #ffffff;
+      }
+      &:active {
         background-color: #ffffff;
       }
     }
