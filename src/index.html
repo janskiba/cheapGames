@@ -9,7 +9,7 @@
     <title>cheapGames</title>
   </head>
   <body>
-    <div class="container">
+    <div id="container">
       <!-- navbar -->
       <nav class="navbar">
         <img class="navbar__logo" src="./assets/logo-white.png" alt="logo" />
@@ -22,22 +22,22 @@
       <!-- menu -->
       <div class="menu">
         <ul>
-          <li>Home</li>
-          <li>Top deals</li>
-          <li>Search</li>
-          <li>About</li>
+          <li><a href="#container">Home</a></li>
+          <li><a href="#deals">Top deals</a></li>
+          <li><a href="#">Search</a></li>
+          <li><a href="#about">About</a></li>
         </ul>
       </div>
       <!-- elipse -->
       <div class="elipse-outer">
         <div class="elipse-inner">
           <p>Find games at the lowest prices.</p>
-          <button onclick="scroll">explore</button>
+          <button><a href="#deals">explore</a></button>
         </div>
       </div>
     </div>
 
-    <section class="deals">
+    <section id="deals">
       <h2 class="deals__title">
         Find top deals below or search for a specific title using the
         <b><u>search engine.</u> </b>
@@ -98,7 +98,7 @@
       </div>
     </section>
 
-    <section class="about">
+    <section id="about">
       <h2 class="about__title">About us</h2>
       <p class="about__desc">
         cheapGames is a website allowing to compare game prices available in the

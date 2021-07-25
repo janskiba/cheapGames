@@ -1,15 +1,23 @@
-//object for all html elements needed for animations
-export const elements = {
-  exploreButton: document.querySelector('.elipse-inner button'),
-  dealsSection: document.querySelector('.deals'),
-};
+export default function scroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((element) => {
+    element.addEventListener('click', (e) => {
+      e.preventDefault();
+      let block = document.querySelector(element.getAttribute('href')),
+        offset = element.dataset.offset ? parseInt(element.dataset.offset) : 0,
+        bodyOffset = document.body.getBoundingClientRect().top;
+      window.scrollTo({
+        top: block.getBoundingClientRect().top - bodyOffset + offset - 70,
+        behavior: 'smooth',
+      });
 
-//function is reusable by taking two arguments:
-//  - 'from' which tells on what element in html function is activated
-//  - 'to' which tells to what element whould be scrolled
-// ! works only on event 'click'
-export function scroll(from, to) {
-  from.addEventListener('click', () => {
-    to.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const navbar = document.querySelector('.navbar');
+      const navbarToggler = document.querySelector('.navbar__toggler');
+      const menu = document.querySelector('.menu');
+
+      navbarToggler.classList.remove('active');
+      menu.classList.remove('active');
+      navbar.classList.remove('expanded');
+      document.body.classList.remove('hidden');
+    });
   });
 }

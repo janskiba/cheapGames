@@ -12,7 +12,7 @@ body {
   }
 }
 
-.container {
+#container {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -63,11 +63,20 @@ body {
       cursor: pointer;
       transition: all 0.2s;
 
-      &:hover,
-      &:focus {
+      &:hover {
         background-color: #fff;
         color: #000;
         outline: none;
+
+        a {
+          text-decoration: none;
+          color: #000;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
       }
     }
   }
@@ -209,6 +218,11 @@ body {
       //   transform: translateX(-100%);
       //   transition: transform 0.4s 0.4s ease-out;
       // }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
     }
   }
 
@@ -225,7 +239,7 @@ body {
   }
 }
 
-.deals {
+#deals {
   padding: 10px 0;
   .deals__title {
     margin: 10px 5.5%;
@@ -310,14 +324,11 @@ body {
       &:hover {
         background-color: #ffffff;
       }
-      &:active {
-        background-color: #ffffff;
-      }
     }
   }
 }
 
-.about {
+#about {
   margin: 35px 5.5%;
   color: #29246a;
 
