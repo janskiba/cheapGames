@@ -3,11 +3,15 @@ function toggleMenu() {
   const navbarToggler = document.querySelector('.navbar__toggler');
   const menu = document.querySelector('.menu');
 
-  window.addEventListener('scroll', () =>
+  function adjustNavbarOnScroll() {
     pageYOffset > 0
       ? navbar.classList.add('active')
-      : navbar.classList.remove('active')
-  );
+      : navbar.classList.remove('active');
+  }
+
+  adjustNavbarOnScroll();
+
+  addEventListener('scroll', () => adjustNavbarOnScroll());
 
   navbarToggler.addEventListener('click', () => {
     navbar.classList.toggle('expanded');
