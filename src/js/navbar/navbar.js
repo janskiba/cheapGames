@@ -10,10 +10,9 @@ function toggleMenu() {
   );
 
   navbarToggler.addEventListener('click', () => {
+    navbar.classList.toggle('expanded');
     navbarToggler.classList.toggle('active');
     menu.classList.toggle('active');
-    navbar.classList.toggle('expanded');
-
     document.body.classList.toggle('hidden');
   });
 }
