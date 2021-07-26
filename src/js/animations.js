@@ -1,4 +1,4 @@
-export default function scroll() {
+const scroll = () => {
   document.querySelectorAll('a[href^="#"]').forEach((element) => {
     element.addEventListener('click', (e) => {
       e.preventDefault();
@@ -20,4 +20,6 @@ export default function scroll() {
       document.body.classList.remove('hidden');
     });
   });
-}
+};
+
+export default scroll;
