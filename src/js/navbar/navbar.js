@@ -1,4 +1,4 @@
-function toggleMenu() {
+function toggleMenu(scrollTransition = false) {
   const navbar = document.querySelector('.navbar');
   const navbarToggler = document.querySelector('.navbar__toggler');
   const menu = document.querySelector('.menu');
@@ -9,9 +9,10 @@ function toggleMenu() {
       : navbar.classList.remove('active');
   }
 
-  adjustNavbarOnScroll();
-
-  addEventListener('scroll', () => adjustNavbarOnScroll());
+  if (scrollTransition) {
+    adjustNavbarOnScroll();
+    addEventListener('scroll', () => adjustNavbarOnScroll());
+  }
 
   navbarToggler.addEventListener('click', () => {
     navbar.classList.toggle('expanded');
