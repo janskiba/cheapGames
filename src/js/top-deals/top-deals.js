@@ -59,7 +59,7 @@ const displayDeals = (store) => {
           </a>
         </li>`;
 
-    list.insertAdjacentHTML('afterbegin', li);
+    list.insertAdjacentHTML('beforeend', li);
   });
 
   const buttonExplore = `<a href="#"><button>see more...</button></a>`;

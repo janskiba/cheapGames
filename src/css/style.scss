@@ -236,6 +236,10 @@ body {
     line-height: 1.4;
     font-weight: normal;
     color: #29246a;
+
+    a {
+      color: #29246a;
+    }
   }
 
   .deals__stores {
@@ -312,10 +316,13 @@ body {
     }
 
     ul {
-      display: none;
-
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
       &.active {
-        display: block;
+        opacity: 1;
+        height: auto;
 
         .element {
           a {
@@ -352,26 +359,26 @@ body {
           }
         }
       }
-    }
 
-    a {
-      text-decoration: none;
-      color: #000;
+      a {
+        text-decoration: none;
+        color: #000;
 
-      button {
-        display: block;
-        margin: auto;
-        font-size: 16px;
-        padding: 0.6rem 1rem;
-        border: 1px solid #000000;
-        border-radius: 2rem;
-        background-color: transparent;
-        color: #000000;
-        cursor: pointer;
-        transition: all 0.2s;
+        button {
+          display: block;
+          margin: auto;
+          font-size: 16px;
+          padding: 0.6rem 1rem;
+          border: 1px solid #000000;
+          border-radius: 2rem;
+          background-color: transparent;
+          color: #000000;
+          cursor: pointer;
+          transition: all 0.2s;
 
-        &:hover {
-          background-color: #ffffff;
+          &:hover {
+            background-color: #ffffff;
+          }
         }
       }
     }
