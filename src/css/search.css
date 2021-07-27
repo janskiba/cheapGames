@@ -295,6 +295,10 @@ body.hidden {
   display: block;
 }
 
+.games .game > img {
+  max-width: 90%;
+}
+
 .games .game .game__title {
   padding: 1rem 0.5rem;
   font-size: 1.3rem;
