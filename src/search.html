@@ -39,16 +39,15 @@
     <div class="search">
       <p>Search for a specific title</p>
       <div class="search__bar">
-        <input type="text" placeholder="start typing..." />
-        <!-- make this icon a button and wrap input above in the form so listening to submit event is avaiable in js -->
-        <i class="fas fa-search"></i>
+        <form>
+          <input type="text" placeholder="start typing..." />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
       </div>
       <div class="search__options">
         <ul></ul>
       </div>
     </div>
-    <div class="games">
-      <div class="game"></div>
-    </div>
+    <div class="games"></div>
   </body>
 </html>

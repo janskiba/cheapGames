@@ -1,6 +1,8 @@
+const form = document.querySelector('.search__bar form');
 const input = document.querySelector('.search__bar input');
 const searchOptions = document.querySelector('.search__options');
-const gameElement = document.querySelector('.game');
+const gamesElement = document.querySelector('.games');
+
 let flag = false;
 
 function search(
@@ -10,13 +12,15 @@ function search(
 ) {
   const baseURL = `https://www.cheapshark.com/api/1.0/games?limit=${options.limit}&title=`;
 
+  form.addEventListener('submit', (event) => submitHandler(event, baseURL));
   input.addEventListener('input', () => inputHandler(baseURL));
   input.addEventListener('focus', focusHandler);
   input.addEventListener('blur', () => (flag = true));
   document.addEventListener('click', documentClickHandler);
 }
 
-async function fetchGamesByTitle(url) {
+// game search autocomplete list
+async function fetchGameTitles(url) {
   const res = await fetch(url);
   const games = await res.json();
 
@@ -33,6 +37,14 @@ async function fetchGamesByTitle(url) {
   return games;
 }
 
+// fetch multiple games data
+async function fetchGames(url) {
+  const res = await fetch(url);
+  const data = res.json();
+  return data;
+}
+
+// fetch game data
 async function fetchGame(gameID) {
   async function fetchGameData() {
     const res = await fetch(
@@ -52,6 +64,8 @@ async function fetchGame(gameID) {
     fetchStoresData(),
   ]);
 
+  gamesElement.innerHTML = '';
+
   const offers = game.deals.map((deal) => {
     const store = stores.find((store) => store.storeID === deal.storeID);
 
@@ -60,18 +74,21 @@ async function fetchGame(gameID) {
     }" /> ${store.storeName}</span><span>$${deal.price}</span></li>`;
   });
 
-  gameElement.innerHTML = `
-    <img src="${game.info.thumb}" alt="game logo" />
-    <p class="game__title">${game.info.title}</p>
-    <p class="game__lowest-price">lowets price <span>$${
-      game.deals[0].price
-    }</span></p>
-    <button class="game__offers-button">show offers</button>
-    <ul class="game__offers">
-      ${offers.join('')}
-    </ul>
+  gamesElement.innerHTML = `
+    <div class="game">
+      <img src="${game.info.thumb}" alt="game logo" />
+      <p class="game__title">${game.info.title}</p>
+      <p class="game__lowest-price">lowets price <span>$${
+        game.deals[0].price
+      }</span></p>
+      <button class="game__offers-button">see offers</button>
+      <ul class="game__offers">
+        ${offers.join('')}
+      </ul>
+    </div>
   `;
 
+  const gameElement = document.querySelector('.game');
   gameElement.classList.remove('active');
 
   const offersButton = document.querySelector('.game__offers-button');
@@ -79,12 +96,74 @@ async function fetchGame(gameID) {
     gameElement.classList.toggle('active');
     gameElement.classList.contains('active')
       ? (offersButton.textContent = 'hide offers')
-      : (offersButton.textContent = 'show offers');
+      : (offersButton.textContent = 'see offers');
+  });
+}
+
+// event handlers
+async function submitHandler(event, baseURL) {
+  event.preventDefault();
+  gamesElement.innerHTML = '';
+
+  async function fetchStoresData() {
+    const res = await fetch('https://www.cheapshark.com/api/1.0/stores');
+    const stores = await res.json();
+    return stores;
+  }
+  const [stores, games] = await Promise.all([
+    fetchStoresData(),
+    fetchGames(baseURL + input.value),
+  ]);
+
+  const gameIDs = games.map((game) => game.gameID);
+  const url =
+    baseURL.substring(0, baseURL.length - 6) + `ids=${gameIDs.join(',')}`;
+
+  const res = await fetch(url);
+  const detailedGamesObject = await res.json();
+
+  const detailedGamesObjectKeys = Object.keys(detailedGamesObject);
+  const detailedGames = detailedGamesObjectKeys.map((key) => {
+    return detailedGamesObject[key];
+  });
+  detailedGames.forEach((detailedGame) => {
+    const offers = detailedGame.deals.map((deal) => {
+      const store = stores.find((store) => store.storeID === deal.storeID);
+
+      return `<li><span><img src="${
+        'https://cheapshark.com' + store.images.logo
+      }" /> ${store.storeName}</span><span>$${deal.price}</span></li>`;
+    });
+
+    gamesElement.innerHTML += `
+      <div class="game">
+        <img src="${detailedGame.info.thumb}" alt="game logo" />
+        <p class="game__title">${detailedGame.info.title}</p>
+        <p class="game__lowest-price">lowets price <span>$${
+          detailedGame.deals[0].price
+        }</span></p>
+        <button class="game__offers-button">see offers</button>
+        <ul class="game__offers">
+          ${offers.join('')}
+        </ul>
+      </div>
+    `;
+  });
+
+  const offerButtons = document.querySelectorAll('.game__offers-button');
+  offerButtons.forEach((offerButton) => {
+    const gameElement = offerButton.parentElement;
+    offerButton.addEventListener('click', () => {
+      gameElement.classList.toggle('active');
+      gameElement.classList.contains('active')
+        ? (offerButton.textContent = 'hide offers')
+        : (offerButton.textContent = 'see offers');
+    });
   });
 }
 
 async function inputHandler(baseURL) {
-  const games = await fetchGamesByTitle(baseURL + input.value);
+  const games = await fetchGameTitles(baseURL + input.value);
 
   if (games.length > 0) {
     const searchOptionsListItems = document.querySelectorAll(

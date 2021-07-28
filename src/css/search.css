@@ -186,7 +186,7 @@ body.hidden {
 }
 
 .search {
-  margin-top: 70px;
+  margin-top: 86px;
   text-align: center;
   font-size: 28px;
   color: #29246a;
@@ -194,7 +194,7 @@ body.hidden {
 
 @media (min-width: 320px) {
   .search {
-    margin-top: 86px;
+    margin-top: 102px;
   }
 }
 
@@ -203,6 +203,13 @@ body.hidden {
 }
 
 .search .search__bar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.search .search__bar form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -212,10 +219,6 @@ body.hidden {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 1rem;
 }
 
 .search .search__bar input {
@@ -228,9 +231,17 @@ body.hidden {
   outline: none;
 }
 
+.search .search__bar button {
+  padding: 1rem;
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .search .search__bar i {
-  padding-left: 1rem;
   font-size: 2rem;
+  color: #29246a;
 }
 
 .search .search__options {
@@ -241,7 +252,7 @@ body.hidden {
   max-width: 486px;
   max-height: 190px;
   overflow-y: auto;
-  margin: 4px auto 0 auto;
+  margin: 0 auto;
   padding: 0.5rem;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -263,16 +274,17 @@ body.hidden {
 .search .search__options ul li {
   padding: 0.25rem;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .search .search__options ul li:hover {
-    background-color: #eee;
+    background-color: #eaf1f8;
   }
 }
 
 .games {
-  padding: 1rem 0;
+  margin: 2rem 0;
 }
 
 .games .game {
@@ -289,6 +301,11 @@ body.hidden {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 2rem 0;
+}
+
+.games .game:nth-of-type(odd) {
+  background-color: #eaf1f8;
 }
 
 .games .game.active .game__offers {
@@ -350,7 +367,11 @@ body.hidden {
   list-style: none;
 }
 
-@media (min-width: 320px) {
+.games .game .game__offers li:last-of-type {
+  padding-bottom: 0;
+}
+
+@media (min-width: 321px) {
   .games .game .game__offers li {
     padding: 1rem 2rem;
   }
