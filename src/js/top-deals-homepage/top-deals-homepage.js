@@ -1,4 +1,4 @@
-const stores = [
+export const stores = [
   {
     name: 'steam',
     id: 1,
@@ -62,7 +62,7 @@ const displayDeals = (store) => {
     list.insertAdjacentHTML('beforeend', li);
   });
 
-  const buttonExplore = `<a href="#"><button>see more...</button></a>`;
+  const buttonExplore = `<a href="./top-deals.html#${store.id}#${store.name}"><button>see more...</button></a>`;
   list.insertAdjacentHTML('beforeend', buttonExplore);
 };
 

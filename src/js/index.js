@@ -3,7 +3,7 @@ import toggleMenu from './navbar/navbar.js';
 import {
   fetchDeals,
   switchStore as switchTopDealsSection,
-} from './top-deals/top-deals.js';
+} from './top-deals-homepage/top-deals-homepage.js';
 
 toggleMenu(true);
 scroll();
