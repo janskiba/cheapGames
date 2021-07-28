@@ -62,7 +62,7 @@ const displayDeals = (store) => {
     list.insertAdjacentHTML('beforeend', li);
   });
 
-  const buttonExplore = `<a href="./top-deals.html#${store.id}#${store.name}"><button>see more...</button></a>`;
+  const buttonExplore = `<a href="./top-deals.html#${store.id}"><button>see more...</button></a>`;
   list.insertAdjacentHTML('beforeend', buttonExplore);
 };
 

@@ -1,27 +1,37 @@
-const store = {
-  id: '',
-  name: '',
-};
-
 export const getStoreName = () => {
   //get full url
   const url = window.location.href;
 
   //split url on '#' to get the 'id' and 'name' of a store
-  store.id = url.split('#')[1];
-  store.name = url.split('#')[2];
-  displayTitle(store.name);
-  console.log('store name: ', store.name, '. store id: ', store.id);
+  const storeId = url.split('#')[1];
+  displayTitle(storeId);
+  console.log('. store id: ', storeId);
   console.log('The URL of this page is: ', url);
 
-  fetchDeals(store.id).then((data) => {
-    displayDeals(data, store);
+  fetchDeals(storeId).then((data) => {
+    displayDeals(data, storeId);
   });
 };
 
-const displayTitle = (storeName) => {
+const displayTitle = (storeId) => {
   const titleContainer = document.querySelector('.title');
-  if (storeName == 'epic') storeName = 'epic games';
+  let storeName;
+
+  switch (storeId) {
+    case '1':
+      storeName = 'Steam';
+      break;
+    case '7':
+      storeName = 'GOG';
+      break;
+    case '25':
+      storeName = 'Epic Games';
+      break;
+    case '8':
+      storeName = 'Origin';
+      break;
+  }
+
   const title = `<h2>Full list of deals from ${storeName}</h2>`;
   titleContainer.insertAdjacentHTML('afterbegin', title);
 };
@@ -42,8 +52,8 @@ const fetchDeals = async (storeId) => {
   return data;
 };
 
-const displayDeals = (deals, store) => {
-  const list = document.getElementById(`${store.id}`);
+const displayDeals = (deals, storeId) => {
+  const list = document.getElementById(`${storeId}`);
   let style;
   let counter = 0;
   deals.forEach((deal) => {
