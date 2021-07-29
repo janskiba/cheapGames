@@ -2,8 +2,10 @@ const form = document.querySelector('.search__bar form');
 const input = document.querySelector('.search__bar input');
 const searchOptions = document.querySelector('.search__options');
 const gamesElement = document.querySelector('.games');
+const footer = document.querySelector('.footer');
 
 let flag = false;
+let suggestionIndex = -1;
 
 function search(
   options = {
@@ -11,12 +13,30 @@ function search(
   }
 ) {
   const baseURL = `https://www.cheapshark.com/api/1.0/games?limit=${options.limit}&title=`;
+  const debouncedInputHandler = debounce(() => inputHandler(baseURL), 250);
 
   form.addEventListener('submit', (event) => submitHandler(event, baseURL));
-  input.addEventListener('input', () => inputHandler(baseURL));
+  input.addEventListener('input', debouncedInputHandler);
   input.addEventListener('focus', focusHandler);
   input.addEventListener('blur', () => (flag = true));
   document.addEventListener('click', documentClickHandler);
+  document.addEventListener('keydown', keydownHandler);
+  searchOptions.addEventListener('mouseover', mouseoverHandler);
+}
+
+//debounce
+function debounce(func, wait) {
+  let timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 // game search autocomplete list
@@ -30,11 +50,47 @@ async function fetchGameTitles(url) {
 
   searchOptions.firstElementChild.innerHTML = games
     .map((game) => {
-      return `<li>${game.external}</li>`;
+      return `<li tabindex="0">${game.external}</li>`;
     })
     .join('');
 
   return games;
+}
+
+// focus search suggestions with arrow keys
+function keydownHandler(event) {
+  if (searchOptions.classList.contains('active')) {
+    // disable arrow scrolling
+    window.addEventListener(
+      'keydown',
+      function (e) {
+        if (['ArrowUp', 'ArrowDown'].indexOf(e.code) > -1) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
+
+    const suggestions = searchOptions.firstElementChild.querySelectorAll('li');
+    if (event.code === 'ArrowDown') {
+      if (suggestionIndex === suggestions.length - 1) return;
+      suggestionIndex++;
+      suggestions[suggestionIndex].focus();
+    }
+
+    if (event.code === 'ArrowUp') {
+      if (suggestionIndex <= 0) {
+        suggestionIndex = 0;
+        return;
+      }
+      suggestionIndex--;
+      suggestions[suggestionIndex].focus();
+    }
+
+    if (event.code === 'Enter') {
+      suggestions[suggestionIndex].click();
+    }
+  }
 }
 
 // fetch multiple games data
@@ -68,10 +124,20 @@ async function fetchGame(gameID) {
 
   const offers = game.deals.map((deal) => {
     const store = stores.find((store) => store.storeID === deal.storeID);
+    const redirectURL = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}`;
 
-    return `<li><span><img src="${
-      'https://cheapshark.com' + store.images.logo
-    }" /> ${store.storeName}</span><span>$${deal.price}</span></li>`;
+    return `
+      <a href="${redirectURL}" target="_blank">
+        <li>
+            <span>
+              <img src="${'https://cheapshark.com' + store.images.logo}" /> ${
+      store.storeName
+    }
+            </span>
+            <span>$${deal.price}</span>
+        </li>
+      </a>
+    `;
   });
 
   gamesElement.innerHTML = `
@@ -98,11 +164,14 @@ async function fetchGame(gameID) {
       ? (offersButton.textContent = 'hide offers')
       : (offersButton.textContent = 'see offers');
   });
+
+  adjustFooterPosition();
 }
 
 // event handlers
 async function submitHandler(event, baseURL) {
   event.preventDefault();
+  if (input.value.length === 0) return;
   gamesElement.innerHTML = '';
 
   async function fetchStoresData() {
@@ -129,10 +198,19 @@ async function submitHandler(event, baseURL) {
   detailedGames.forEach((detailedGame) => {
     const offers = detailedGame.deals.map((deal) => {
       const store = stores.find((store) => store.storeID === deal.storeID);
+      const redirectURL = `https://www.cheapshark.com/redirect?dealID=${deal.dealID}`;
 
-      return `<li><span><img src="${
-        'https://cheapshark.com' + store.images.logo
-      }" /> ${store.storeName}</span><span>$${deal.price}</span></li>`;
+      return `
+        <a href="${redirectURL}" target="_blank">
+          <li>
+            <span>
+              <img src="${'https://cheapshark.com' + store.images.logo}" /> ${
+        store.storeName
+      }
+            </span>
+            <span>$${deal.price}</span>
+          </li>
+        </a>`;
     });
 
     gamesElement.innerHTML += `
@@ -160,9 +238,15 @@ async function submitHandler(event, baseURL) {
         : (offerButton.textContent = 'see offers');
     });
   });
+
+  adjustFooterPosition();
 }
 
 async function inputHandler(baseURL) {
+  if (input.value.length === 0) return;
+
+  suggestionIndex = -1;
+
   const games = await fetchGameTitles(baseURL + input.value);
 
   if (games.length > 0) {
@@ -179,6 +263,7 @@ async function inputHandler(baseURL) {
 
 function focusHandler(event) {
   flag = true;
+  suggestionIndex = -1;
   if (
     event.target.value.length > 0 &&
     searchOptions.firstElementChild.childElementCount > 0
@@ -186,9 +271,21 @@ function focusHandler(event) {
     searchOptions.classList.add('active');
 }
 
+function mouseoverHandler() {
+  const suggestions = searchOptions.querySelectorAll('li');
+  suggestions.forEach((suggestion) => suggestion.blur());
+}
+
 function documentClickHandler() {
   if (flag && document.activeElement !== input)
     searchOptions.classList.remove('active');
+}
+
+// helpers
+function adjustFooterPosition() {
+  gamesElement.childElementCount > 0
+    ? footer.classList.add('active')
+    : footer.classList.remove('active');
 }
 
 export default search;
