@@ -429,10 +429,6 @@ body.hidden {
   height: 19rem;
 }
 
-.footer.active {
-  position: static;
-}
-
 .footer .footer__inner {
   width: 150%;
   height: 20rem;
