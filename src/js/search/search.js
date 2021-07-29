@@ -282,10 +282,10 @@ function documentClickHandler() {
 }
 
 // helpers
-function adjustFooterPosition() {
-  gamesElement.childElementCount > 0
-    ? footer.classList.add('active')
-    : footer.classList.remove('active');
-}
+// function adjustFooterPosition() {
+//   gamesElement.childElementCount > 0
+//     ? footer.classList.add('active')
+//     : footer.classList.remove('active');
+// }
 
 export default search;
