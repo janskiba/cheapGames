@@ -3,5 +3,5 @@ import search from './search/search.js';
 
 toggleMenu();
 search({
-  limit: 10,
+  limit: 5,
 });
