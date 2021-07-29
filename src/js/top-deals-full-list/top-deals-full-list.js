@@ -53,7 +53,7 @@ const fetchDeals = async (storeId) => {
 };
 
 const displayDeals = (deals, storeId) => {
-  const list = document.getElementById(`${storeId}`);
+  const list = document.querySelector('.deals');
   let style;
   let counter = 0;
   deals.forEach((deal) => {
