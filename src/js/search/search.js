@@ -2,7 +2,6 @@ const form = document.querySelector('.search__bar form');
 const input = document.querySelector('.search__bar input');
 const searchOptions = document.querySelector('.search__options');
 const gamesElement = document.querySelector('.games');
-const footer = document.querySelector('.footer');
 
 let flag = false;
 let suggestionIndex = -1;
@@ -164,8 +163,6 @@ async function fetchGame(gameID) {
       ? (offersButton.textContent = 'hide offers')
       : (offersButton.textContent = 'see offers');
   });
-
-  adjustFooterPosition();
 }
 
 // event handlers
@@ -238,8 +235,6 @@ async function submitHandler(event, baseURL) {
         : (offerButton.textContent = 'see offers');
     });
   });
-
-  adjustFooterPosition();
 }
 
 async function inputHandler(baseURL) {
@@ -279,13 +274,6 @@ function mouseoverHandler() {
 function documentClickHandler() {
   if (flag && document.activeElement !== input)
     searchOptions.classList.remove('active');
-}
-
-// helpers
-function adjustFooterPosition() {
-  gamesElement.childElementCount > 0
-    ? footer.classList.add('active')
-    : footer.classList.remove('active');
 }
 
 export default search;

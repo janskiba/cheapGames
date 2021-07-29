@@ -7,6 +7,15 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 19rem;
+  /* Set same as footer's height */
 }
 
 body.hidden {
@@ -186,7 +195,7 @@ body.hidden {
 }
 
 .search {
-  margin-top: 86px;
+  padding-top: 86px;
   text-align: center;
   font-size: 28px;
   color: #29246a;
@@ -194,7 +203,7 @@ body.hidden {
 
 @media (min-width: 320px) {
   .search {
-    margin-top: 102px;
+    padding-top: 102px;
   }
 }
 
@@ -413,16 +422,11 @@ body.hidden {
 }
 
 .footer {
+  overflow: hidden;
   position: absolute;
   bottom: 0;
-  left: 0;
-  z-index: -1;
   width: 100%;
-  overflow: hidden;
-}
-
-.footer.active {
-  position: static;
+  height: 19rem;
 }
 
 .footer .footer__inner {

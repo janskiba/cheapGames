@@ -8,6 +8,14 @@ $font-color: #29246a;
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  min-height: 100vh;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 19rem; /* Set same as footer's height */
+  }
 
   &.hidden {
     overflow-y: hidden !important;
@@ -154,13 +162,13 @@ body {
 
 // search
 .search {
-  margin-top: 86px;
+  padding-top: 86px;
   text-align: center;
   font-size: 28px;
   color: $font-color;
 
   @media (min-width: 320px) {
-    margin-top: 102px;
+    padding-top: 102px;
   }
 
   p {
@@ -351,16 +359,11 @@ body {
 
 // footer
 .footer {
+  overflow: hidden;
   position: absolute;
   bottom: 0;
-  left: 0;
-  z-index: -1;
   width: 100%;
-  overflow: hidden;
-
-  &.active {
-    position: static;
-  }
+  height: 19rem;
 
   .footer__inner {
     width: 150%;
