@@ -30,26 +30,31 @@ export const fetchDeals = () => {
       })
       .catch((error) => console.log(error));
   });
+
+  //start loading animation for each list
+  const loaderList = document.querySelectorAll('.deals__loader-container');
+  loaderList.forEach((loader) => {
+    loader.classList.add('active');
+  });
 };
 
 const fetchStoreDeals = async (store) => {
-  //start loading animation
-  const loader = document.querySelector('.deals_mobile__loader-container');
-  loader.classList.add('active');
-
+  const loader = document.querySelector;
   const response = await fetch(
     `https://www.cheapshark.com/api/1.0/deals?storeID=${store.id}&upperPrice=20&pageSize=7`
   );
   const data = response.json();
-
-  //end loading animation
-  loader.classList.remove('active');
   return data;
 };
 
 const displayDeals = (store) => {
   const listMobile = document.querySelector(`.${store.name}-deals__mobile`);
   const list = document.querySelector(`.${store.name}-deals`);
+  const loader = document.querySelector(
+    `.${store.name} .deals__loader-container`
+  );
+  //end loading animations
+  loader.classList.remove('active');
 
   store.deals.forEach((deal) => {
     const li = `

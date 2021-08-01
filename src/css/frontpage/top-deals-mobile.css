@@ -59,11 +59,11 @@
   min-height: 510px;
 }
 
-#deals_mobile .deals_mobile__list-container .deals_mobile__loader-container {
+#deals_mobile .deals_mobile__list-container .deals__loader-container {
   display: none;
 }
 
-#deals_mobile .deals_mobile__list-container .deals_mobile__loader-container.active {
+#deals_mobile .deals_mobile__list-container .deals__loader-container.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -250,11 +250,11 @@
   min-height: 510px;
 }
 
-#deals_mobile .deals_mobile__list-container .deals_mobile__loader-container {
+#deals_mobile .deals_mobile__list-container .deals__loader-container {
   display: none;
 }
 
-#deals_mobile .deals_mobile__list-container .deals_mobile__loader-container.active {
+#deals_mobile .deals_mobile__list-container .deals__loader-container.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

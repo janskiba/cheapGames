@@ -27,7 +27,7 @@
 
     .deals__list {
       min-width: 500px;
-      min-height: 500px;
+      min-height: 645px;
       background-color: #eaf1f8;
       border-radius: 100px;
 
@@ -39,6 +39,17 @@
       }
     }
   }
+
+  .deals__loader-container {
+    display: none;
+    &.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 407px;
+    }
+  }
+
   .loader {
     display: block;
     border: 7px solid #c8c5c5;

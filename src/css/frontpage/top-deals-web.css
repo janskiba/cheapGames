@@ -33,7 +33,7 @@
 
 #deals_web .deals-container .deals__list {
   min-width: 500px;
-  min-height: 500px;
+  min-height: 645px;
   background-color: #eaf1f8;
   border-radius: 100px;
 }
@@ -43,6 +43,23 @@
   height: 75px;
   width: auto;
   margin: 38px auto;
+}
+
+#deals_web .deals__loader-container {
+  display: none;
+}
+
+#deals_web .deals__loader-container.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 407px;
 }
 
 #deals_web .loader {

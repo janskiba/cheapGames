@@ -1,6 +1,6 @@
-css/style.css
-css/style.css.map
-css/search.css
-css/search.css.map
-css/top-deals.css
-css/top-deals.css.map
+# Ignore these files...
+*.css
+*.css.map
+
+# But not these files...
+!style.css
