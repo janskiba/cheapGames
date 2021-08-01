@@ -34,7 +34,7 @@ export const fetchDeals = () => {
 
 const fetchStoreDeals = async (store) => {
   //start loading animation
-  const loader = document.querySelector('.loader-container');
+  const loader = document.querySelector('.deals_mobile__loader-container');
   loader.classList.add('active');
 
   const response = await fetch(
@@ -48,7 +48,9 @@ const fetchStoreDeals = async (store) => {
 };
 
 const displayDeals = (store) => {
-  const list = document.getElementById(`${store.name}`);
+  const listMobile = document.querySelector(`.${store.name}-deals__mobile`);
+  const list = document.querySelector(`.${store.name}-deals`);
+
   store.deals.forEach((deal) => {
     const li = `
         <li class="element">
@@ -59,15 +61,17 @@ const displayDeals = (store) => {
           </a>
         </li>`;
 
+    listMobile.insertAdjacentHTML('beforeend', li);
     list.insertAdjacentHTML('beforeend', li);
   });
 
   const buttonExplore = `<a href="./top-deals.html#${store.id}"><button>see more...</button></a>`;
   list.insertAdjacentHTML('beforeend', buttonExplore);
+  listMobile.insertAdjacentHTML('beforeend', buttonExplore);
 };
 
 export const switchStore = () => {
-  const logos = document.querySelectorAll('.deals__logo');
+  const logos = document.querySelectorAll('.deals_mobile__logo');
   logos.forEach((element) => {
     element.addEventListener('click', () => {
       //remove class 'active' from whatever logo currently active
@@ -89,6 +93,6 @@ const switchDeals = (storeName) => {
     element.classList.remove('active');
   });
 
-  const listToActivate = document.querySelector(`#${storeName}`);
+  const listToActivate = document.querySelector(`.${storeName}-deals__mobile`);
   listToActivate.classList.add('active');
 };

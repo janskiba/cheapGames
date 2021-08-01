@@ -45,35 +45,72 @@
       </div>
     </div>
 
-    <section id="deals">
-      <h2 class="deals__title">
-        Find top deals below or search for a specific title using the
-        <a href="/src/search.html"><b>search engine. </b></a>
-      </h2>
-      <div class="deals__stores">
-        <div class="deals__logo steam active">
-          <img src="assets/store logos/steam.png" alt="steam logo" />
+    <div id="deals">
+      <section id="deals_mobile">
+        <h2 class="deals_mobile__title">
+          Find top deals below or search for a specific title using the
+          <a href="/src/search.html"><b>search engine. </b></a>
+        </h2>
+        <div class="deals_mobile__stores">
+          <div class="deals_mobile__logo steam active">
+            <img src="assets/store logos/steam.png" alt="steam logo" />
+          </div>
+          <div class="deals_mobile__logo origin">
+            <img src="assets/store logos/origin.png" alt="origin logo" />
+          </div>
+          <div class="deals_mobile__logo gog">
+            <img src="assets/store logos/gog.png" alt="gog logo" />
+          </div>
+          <div class="deals_mobile__logo epic">
+            <img
+              src="assets/store logos/epic-games.png"
+              alt="epic-games logo"
+            />
+          </div>
         </div>
-        <div class="deals__logo origin">
-          <img src="assets/store logos/origin.png" alt="origin logo" />
+        <div class="deals_mobile__list-container">
+          <div class="deals_mobile__loader-container">
+            <div class="loader"></div>
+          </div>
+          <ul class="deals_mobile steam-deals__mobile active"></ul>
+          <ul class="deals_mobile origin-deals__mobile"></ul>
+          <ul class="deals_mobile gog-deals__mobile"></ul>
+          <ul class="deals_mobile epic-deals__mobile"></ul>
         </div>
-        <div class="deals__logo gog">
-          <img src="assets/store logos/gog.png" alt="gog logo" />
+      </section>
+
+      <section id="deals_web">
+        <h2 class="deals__title">
+          Find top deals below or search for a specific title using the
+          <a href="/src/search.html"><b>search engine. </b></a>
+        </h2>
+
+        <div class="deals-container">
+          <div class="deals__list">
+            <img src="assets/store logos/steam.png" alt="steam logo" />
+            <ul class="steam-deals" class="deals_mobile active"></ul>
+          </div>
+
+          <div class="deals__list">
+            <img src="assets/store logos/origin.png" alt="origin logo" />
+            <ul class="origin-deals"></ul>
+          </div>
+
+          <div class="deals__list">
+            <img src="assets/store logos/gog.png" alt="gog logo" />
+            <ul class="gog-deals"></ul>
+          </div>
+
+          <div class="deals__list">
+            <img
+              src="assets/store logos/epic-games.png"
+              alt="epic-games logo"
+            />
+            <ul class="epic-deals"></ul>
+          </div>
         </div>
-        <div class="deals__logo epic">
-          <img src="assets/store logos/epic-games.png" alt="epic-games logo" />
-        </div>
-      </div>
-      <div class="list-container">
-        <div class="loader-container">
-          <div class="loader"></div>
-        </div>
-        <ul id="steam" class="deals active"></ul>
-        <ul id="origin" class="deals"></ul>
-        <ul id="gog" class="deals"></ul>
-        <ul id="epic" class="deals"></ul>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section id="about">
       <h2 class="about__title">About us</h2>
@@ -88,7 +125,11 @@
         <img src="./assets/logo-black.png" alt="logo" />
         <p>INFO</p>
         <p>
-          <a href="#"><i class="fab fa-github-square"></i> source code</a>
+          <a
+            href="https://github.com/janskiba/cheapGames/tree/main"
+            target="_blank"
+            ><i class="fab fa-github-square"></i> source code</a
+          >
         </p>
         <p><a href="https://apidocs.cheapshark.com/" target="_blank">api</a></p>
         <p>Copyright &copy; 2021 All rights reserved</p>
