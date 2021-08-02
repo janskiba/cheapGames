@@ -49,11 +49,12 @@ const fetchStoreDeals = async (store) => {
 const displayDeals = (store) => {
   const listMobile = document.querySelector(`.${store.name}-deals__mobile`);
   const list = document.querySelector(`.${store.name}-deals`);
-  const loader = document.querySelector(
-    `.${store.name} .deals__loader-container`
-  );
+
   //end loading animations
-  loader.classList.remove('active');
+  const loaderList = document.querySelectorAll(`.${store.name}-loader`);
+  loaderList.forEach((loader) => {
+    loader.classList.remove('active');
+  });
 
   store.deals.forEach((deal) => {
     const li = `
