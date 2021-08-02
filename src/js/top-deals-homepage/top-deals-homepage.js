@@ -39,7 +39,6 @@ export const fetchDeals = () => {
 };
 
 const fetchStoreDeals = async (store) => {
-  const loader = document.querySelector;
   const response = await fetch(
     `https://www.cheapshark.com/api/1.0/deals?storeID=${store.id}&upperPrice=20&pageSize=7`
   );
