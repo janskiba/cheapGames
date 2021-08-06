@@ -1,0 +1,523 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 19rem;
+  /* Set same as footer's height */
+}
+
+body.hidden {
+  overflow-y: hidden !important;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  padding: 0.5rem;
+  -webkit-transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  background-color: #5e24d5;
+}
+
+@media (min-width: 700px) {
+  .navbar {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.navbar .navbar__menu {
+  display: none;
+  width: 100%;
+  max-width: 600px;
+  list-style: none;
+  font-size: 1.6rem;
+}
+
+@media (min-width: 700px) {
+  .navbar .navbar__menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+}
+
+.navbar .navbar__menu li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar.expanded {
+  background-color: transparent;
+}
+
+.navbar .navbar__logo {
+  height: 2rem;
+  padding-left: 0.5rem;
+}
+
+@media (min-width: 320px) {
+  .navbar .navbar__logo {
+    padding-left: 1rem;
+  }
+}
+
+.navbar .navbar__toggler {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+@media (min-width: 320px) {
+  .navbar .navbar__toggler {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 700px) {
+  .navbar .navbar__toggler {
+    visibility: hidden;
+  }
+}
+
+.navbar .navbar__toggler .navbar__toggler__inner {
+  position: relative;
+  width: 32px;
+  height: 22px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.navbar .navbar__toggler .navbar__toggler__inner .navbar__toggler__inner__bar {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.navbar .navbar__toggler .navbar__toggler__inner::before {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  content: '';
+  top: 0;
+  left: 0;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+.navbar .navbar__toggler .navbar__toggler__inner::after {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  content: '';
+  bottom: 0;
+  left: 0;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+.navbar .navbar__toggler.active .navbar__toggler__inner::before {
+  -webkit-transform: translateY(9.5px) rotate(45deg);
+          transform: translateY(9.5px) rotate(45deg);
+}
+
+.navbar .navbar__toggler.active .navbar__toggler__inner__bar {
+  background-color: transparent;
+}
+
+.navbar .navbar__toggler.active .navbar__toggler__inner::after {
+  -webkit-transform: translateY(-9.5px) rotate(-45deg);
+          transform: translateY(-9.5px) rotate(-45deg);
+}
+
+.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4b11c2), to(#7a3ff2));
+  background: linear-gradient(#4b11c2, #7a3ff2);
+  overflow: hidden;
+  -webkit-transition: height 0.4s ease-in-out;
+  transition: height 0.4s ease-in-out;
+}
+
+.menu ul {
+  width: 100%;
+  list-style: none;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.menu ul li {
+  padding: 0.5rem 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu.active {
+  height: 100vh;
+}
+
+.menu.active li {
+  opacity: 1;
+}
+
+.search {
+  padding-top: 86px;
+  text-align: center;
+  font-size: 28px;
+  color: #29246a;
+}
+
+@media (min-width: 320px) {
+  .search {
+    padding-top: 102px;
+  }
+}
+
+.search p {
+  margin-bottom: 1rem;
+}
+
+.search .search__bar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.search .search__bar form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search .search__bar input {
+  width: 80%;
+  padding: 0.25rem 1rem;
+  border-radius: 2rem;
+  font-family: inherit;
+  font-size: 22px;
+  border: 1px solid #29246a;
+  outline: none;
+}
+
+.search .search__bar button {
+  padding: 1rem;
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search .search__bar i {
+  font-size: 2rem;
+  color: #29246a;
+}
+
+.search .search__options {
+  display: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  width: 80%;
+  max-width: 486px;
+  max-height: 190px;
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 4px #ccc;
+          box-shadow: 2px 2px 4px #ccc;
+}
+
+.search .search__options.active {
+  display: block;
+}
+
+.search .search__options ul {
+  list-style: none;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.search .search__options ul li {
+  padding: 0.25rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search .search__options ul li:focus {
+  outline: none;
+  background-color: #eaf1f8;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .search .search__options ul li:hover {
+    background-color: #eaf1f8;
+  }
+}
+
+.games {
+  margin-top: 2rem;
+}
+
+.games .game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem 0;
+}
+
+.games .game:nth-of-type(odd) {
+  background-color: #eaf1f8;
+}
+
+.games .game.active .game__offers {
+  display: block;
+}
+
+.games .game > img {
+  max-width: 90%;
+}
+
+.games .game .game__title {
+  padding: 1rem 0.5rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.games .game .game__lowest-price {
+  padding-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.games .game .game__lowest-price span {
+  font-size: 1.3rem;
+  background-color: #37cd8f;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.games .game .game__offers-button {
+  padding: 0.4rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.games .game .game__offers {
+  width: 100%;
+  max-width: 600px;
+  display: none;
+}
+
+.games .game .game__offers a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.games .game .game__offers li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 0.5rem;
+  font-size: 1.2rem;
+  list-style: none;
+}
+
+.games .game .game__offers li:last-of-type {
+  padding-bottom: 0;
+}
+
+@media (min-width: 321px) {
+  .games .game .game__offers li {
+    padding: 1rem 2rem;
+  }
+}
+
+.games .game .game__offers li span:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.games .game .game__offers li span:last-of-type {
+  font-size: 1.3rem;
+  background-color: #37cd8f;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.games .game .game__offers li img {
+  width: 2rem;
+  padding-right: 0.5rem;
+}
+
+.footer {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 19rem;
+}
+
+.footer .footer__inner {
+  width: 150%;
+  height: 20rem;
+  -webkit-transform: translate(-17%, 20%);
+          transform: translate(-17%, 20%);
+  border-radius: 50%;
+  background-color: #eaf1f8;
+}
+
+@media (min-width: 321px) {
+  .footer .footer__inner {
+    -webkit-transform: translate(-17%, 15%);
+            transform: translate(-17%, 15%);
+  }
+}
+
+.footer img {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  display: block;
+  height: 2rem;
+  margin: 0 auto;
+  padding: 3rem 0 2rem 0;
+}
+
+.footer p {
+  text-align: center;
+}
+
+@media (min-width: 321px) {
+  .footer p {
+    font-size: 1.2rem;
+  }
+}
+
+.footer p:last-of-type {
+  padding: 2rem;
+}
+
+@media (min-width: 321px) {
+  .footer p:last-of-type {
+    font-size: 1.2rem;
+  }
+}
+
+.footer p a {
+  color: #000;
+  text-decoration: none;
+}
+
+.navbar__menu li a[href='./search.html'] {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=search.css.map */

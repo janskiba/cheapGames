@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./js/index.js" defer></script>
+    <title>cheapGames</title>
+  </head>
+  <body>
+    <div id="container">
+      <!-- navbar -->
+      <nav class="navbar">
+        <a href="./index.html"
+          ><img class="navbar__logo" src="./assets/logo-white.png" alt="logo"
+        /></a>
+        <ul class="navbar__menu">
+          <li><a href="#container">Home</a></li>
+          <li><a href="#deals">Top deals</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="./search.html">Search</a></li>
+        </ul>
+        <div class="navbar__toggler">
+          <button class="navbar__toggler__inner">
+            <div class="navbar__toggler__inner__bar"></div>
+          </button>
+        </div>
+      </nav>
+      <!-- menu -->
+      <div class="menu">
+        <ul>
+          <li><a href="#container">Home</a></li>
+          <li><a href="#deals">Top deals</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="./search.html">Search</a></li>
+        </ul>
+      </div>
+      <!-- elipse -->
+      <div class="elipse-outer">
+        <div class="elipse-inner">
+          <p>Find games at the lowest prices.</p>
+          <a href="#deals"><button>explore</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="deals">
+      <section id="deals_mobile">
+        <h2 class="deals_mobile__title">
+          Find top deals below or search for a specific title using the
+          <a href="/src/search.html"><b>search engine. </b></a>
+        </h2>
+        <div class="deals_mobile__stores">
+          <div class="deals_mobile__logo steam active">
+            <img src="assets/store logos/steam.png" alt="steam logo" />
+          </div>
+          <div class="deals_mobile__logo origin">
+            <img src="assets/store logos/origin.png" alt="origin logo" />
+          </div>
+          <div class="deals_mobile__logo gog">
+            <img src="assets/store logos/gog.png" alt="gog logo" />
+          </div>
+          <div class="deals_mobile__logo epic">
+            <img
+              src="assets/store logos/epic-games.png"
+              alt="epic-games logo"
+            />
+          </div>
+        </div>
+        <div class="deals_mobile__list-container">
+          <ul class="deals_mobile steam-deals__mobile active">
+            <div class="deals__loader-container steam-loader">
+              <div class="loader"></div>
+            </div>
+          </ul>
+          <ul class="deals_mobile origin-deals__mobile">
+            <div class="deals__loader-container origin-loader">
+              <div class="loader"></div>
+            </div>
+          </ul>
+          <ul class="deals_mobile gog-deals__mobile">
+            <div class="deals__loader-container gog-loader">
+              <div class="loader"></div>
+            </div>
+          </ul>
+          <ul class="deals_mobile epic-deals__mobile">
+            <div class="deals__loader-container epic-loader">
+              <div class="loader"></div>
+            </div>
+          </ul>
+        </div>
+      </section>
+
+      <section id="deals_web">
+        <h2 class="deals__title">
+          Find top deals below or search for a specific title using the
+          <a href="/src/search.html"><b>search engine. </b></a>
+        </h2>
+
+        <div class="deals-container steam">
+          <div class="deals__list">
+            <img src="assets/store logos/steam.png" alt="steam logo" />
+            <ul class="steam-deals" class="deals_mobile active"></ul>
+            <div class="deals__loader-container steam-loader">
+              <div class="loader"></div>
+            </div>
+          </div>
+
+          <div class="deals__list origin">
+            <img src="assets/store logos/origin.png" alt="origin logo" />
+            <ul class="origin-deals"></ul>
+            <div class="deals__loader-container origin-loader">
+              <div class="loader"></div>
+            </div>
+          </div>
+
+          <div class="deals__list gog">
+            <img src="assets/store logos/gog.png" alt="gog logo" />
+            <ul class="gog-deals"></ul>
+            <div class="deals__loader-container gog-loader">
+              <div class="loader"></div>
+            </div>
+          </div>
+
+          <div class="deals__list epic">
+            <img
+              src="assets/store logos/epic-games.png"
+              alt="epic-games logo"
+            />
+            <ul class="epic-deals"></ul>
+            <div class="deals__loader-container epic-loader">
+              <div class="loader"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="about">
+      <h2 class="about__title">About us</h2>
+      <p class="about__desc">
+        cheapGames is a website allowing to compare game prices available in the
+        most popular game shops. It uses CheapShark API for fetching deals data.
+      </p>
+    </section>
+    <!-- footer -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <img src="./assets/logo-black.png" alt="logo" />
+        <p>INFO</p>
+        <p>
+          <a
+            href="https://github.com/janskiba/cheapGames/tree/main"
+            target="_blank"
+            ><i class="fab fa-github-square"></i> source code</a
+          >
+        </p>
+        <p><a href="https://apidocs.cheapshark.com/" target="_blank">api</a></p>
+        <p>Copyright &copy; 2021 All rights reserved</p>
+      </div>
+    </footer>
+  </body>
+</html>

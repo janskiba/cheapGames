@@ -1,0 +1,143 @@
+// navbar
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  padding: 0.5rem;
+  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
+  &.active {
+    background-color: #5e24d5;
+    padding: 0.5rem;
+  }
+
+  &.active.expanded {
+    background-color: transparent;
+  }
+
+  @media (min-width: 320px) {
+    padding: 1rem;
+  }
+
+  .navbar__logo {
+    height: 2rem;
+    padding-left: 0.5rem;
+
+    @media (min-width: 320px) {
+      padding-left: 1rem;
+    }
+  }
+
+  .navbar__toggler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    @media (min-width: 320px) {
+      padding: 1rem;
+    }
+
+    .navbar__toggler__inner {
+      position: relative;
+      width: 32px;
+      height: 22px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      @mixin bar() {
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        background-color: #fff;
+      }
+
+      .navbar__toggler__inner__bar {
+        @include bar();
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        transition: background-color 0.2s;
+      }
+
+      &::before {
+        @include bar();
+        content: '';
+        top: 0;
+        left: 0;
+        transition: transform 0.4s;
+      }
+
+      &::after {
+        @include bar();
+        content: '';
+        bottom: 0;
+        left: 0;
+        transition: transform 0.4s;
+      }
+    }
+
+    &.active {
+      .navbar__toggler__inner::before {
+        transform: translateY(9.5px) rotate(45deg);
+      }
+
+      .navbar__toggler__inner__bar {
+        background-color: transparent;
+      }
+
+      .navbar__toggler__inner::after {
+        transform: translateY(-9.5px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+// menu
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 0;
+  background: linear-gradient(#4b11c2, #7a3ff2);
+  overflow: hidden;
+  transition: height 0.4s ease-in-out;
+
+  ul {
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #fff;
+
+    li {
+      padding: 0.5rem 0;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+
+  &.active {
+    height: 100vh;
+
+    li {
+      opacity: 1;
+    }
+  }
+}

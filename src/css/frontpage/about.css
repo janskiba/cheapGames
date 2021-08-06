@@ -1,0 +1,23 @@
+#about {
+  margin: 35px 5.5%;
+  color: #29246a;
+}
+
+#about .about__title {
+  font-size: 28px;
+}
+
+#about .about__desc {
+  font-size: 25px;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
+@media (min-width: 1199px) {
+  #about {
+    text-align: center;
+    max-width: 1000px;
+    margin: 80px auto;
+  }
+}
+/*# sourceMappingURL=about.css.map */
