@@ -108,6 +108,30 @@ body {
   padding: 0.5rem;
   transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out;
 
+  @media (min-width: 700px) {
+    justify-content: flex-start;
+  }
+
+  .navbar__menu {
+    display: none;
+    width: 100%;
+    max-width: 600px;
+    list-style: none;
+    font-size: 1.6rem;
+
+    @media (min-width: 700px) {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    li {
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
   &.active {
     background-color: #5e24d5;
     padding: 0.5rem;
@@ -139,6 +163,10 @@ body {
 
     @media (min-width: 320px) {
       padding: 1rem;
+    }
+
+    @media (min-width: 700px) {
+      visibility: hidden;
     }
 
     .navbar__toggler__inner {
@@ -239,4 +267,8 @@ body {
       opacity: 1;
     }
   }
+}
+
+.navbar__menu li a[href='#container'] {
+  text-decoration: underline;
 }

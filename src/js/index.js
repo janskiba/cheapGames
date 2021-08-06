@@ -1,4 +1,5 @@
 import scroll from './animations.js';
+import { setNavLinkActiveOnScroll } from './animations.js';
 import toggleMenu from './navbar/navbar.js';
 import {
   fetchDeals,
@@ -7,5 +8,6 @@ import {
 
 toggleMenu(true);
 scroll();
+setNavLinkActiveOnScroll();
 fetchDeals();
 switchTopDealsSection();
